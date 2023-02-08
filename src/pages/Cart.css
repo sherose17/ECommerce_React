@@ -1,0 +1,5 @@
+.img{
+    display: flex;
+    flex-direction: row;
+    border: 5px;
+}
