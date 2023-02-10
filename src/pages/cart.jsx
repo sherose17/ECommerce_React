@@ -1,37 +1,56 @@
 import React from 'react'
-import { useContext } from 'react'
-import { ContextApi ,CartContext} from '../context/ShopContext'
-import "./Cart.css"
 
+import { ContextApi } from '../context/ShopContext'
+import "./Cart.css"
+import DeleteIcon from '@mui/icons-material/Delete';
 const Cart = () => {
   const{product:{cart},dispatch}=ContextApi()
+  const subTotal =(a,b)=>{
+    return a*b
+  }
+  let {totalItems, totalPrice} = cart.reduce((acc,cur)=>{
+    acc.totalItems +=cur.qty
+    acc.totalPrice += cur.price*cur.qty
+    return acc
+  },{
+    totalItems:0,
+    totalPrice:0,
+  })
   
   return (
-    <div>
-
-<table class="table">
-  <thead class="thead-dark">
+    <div className='container'>
+      {cart.length>0 ? (<div>
+        <div>
+        <table className="table">
+  <thead className="thead">
     <tr>
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Qty</th>
-      <th scope="col">Price</th>
+      
+      <th className="pro">Product</th>
+      <th className="name">Name</th>
+      <th className="qty">Qty</th>
+      <th className="pr">Price</th>
     
-      <th scope="col">Total</th>
+      <th scope="col">Sub Total</th>
+      <th scope="col">Remove</th>
     </tr>
   </thead>
   <tbody>
     {cart?.map((item)=>(
-      <tr key={item.id}>
-      <td><img className='img' src={item.thumbnail}></img></td>      
-      <td>{item.title}</td>
+      <tr  key={item.id}>
+      <td><img className='img' src={item.thumbnail} alt="img"></img></td>      
+      <td className='thead'>{item.title}</td>
       <td>{item.qty}</td>
-      <td>{item.price}</td>
-      <td>{item.price*item.qty}</td>
-      <button onClick={()=>dispatch({
+      <td>{new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+}).format(item.price)}
+</td>
+      <td>{subTotal(item.price,item.qty)}</td>
+      <DeleteIcon onClick={()=>dispatch({
         type:"REMOVE",
         payload:item
-      })} type="button" class="btn btn-danger">Remove</button>
+      })}></DeleteIcon>
+      
     </tr>
 
     ))}
@@ -42,7 +61,27 @@ const Cart = () => {
 </table>
 
 
-  
+<table class="table table-borderless table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Cart Items in the Cart</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{totalItems}</th>
+      <th scope="row">{totalPrice}</th>
+
+    </tr>
+    
+    
+  </tbody>
+</table></div>
+
+      </div>):(<h1 className="htext">Your Cart is empty </h1>)}
+     
+
       
      
     </div>

@@ -3,3 +3,23 @@
     flex-direction: row;
     border: 5px;
 }
+.htext{
+    width: 100%;
+    padding-left: 520px;
+}
+.table {
+    display: table;
+    
+    width: 100%;
+}
+.thead {
+    
+    vertical-align: middle;
+    border-color: black;
+}
+.container{
+    width: 100%;
+}
+.pro{
+    
+}

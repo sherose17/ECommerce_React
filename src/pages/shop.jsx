@@ -1,7 +1,7 @@
 import axios from 'axios'
 import "./shop.css"
 import {  ContextApi } from '../context/ShopContext'
-import React, { useContext } from 'react'
+import React from 'react'
 import { useEffect ,useState} from 'react'
 
 function Shop() {
@@ -21,14 +21,6 @@ function Shop() {
         })
    
     },[])
-
-    /* const BtnClick=(ProductDetials)=>{
-      
-     console.log(ProductDetials)  
-
-    
-    
-  } */
  return (
     <div className='products'>
  
@@ -39,7 +31,10 @@ function Shop() {
       <p>{p.title}</p>
     <h2>{p.rating}</h2>
 
-      <h2>{p.price}</h2>
+      <h2>{new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+}).format(p.price)}</h2>
       <button onClick={()=>dispatch({type:"ADD",payload:p,})} className='addToCartBttn'>Add to Cart</button>
   </div>
 })}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
