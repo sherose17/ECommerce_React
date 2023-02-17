@@ -1,5 +1,5 @@
-import { createContext ,useReducer,useState,useContext} from "react";
-import Cart from "../pages/cart";
+import { createContext ,useReducer,useContext} from "react";
+//import Cart from "../pages/cart";
 import {state} from "./ActionReducer";
 import ActionReducer from "./ActionReducer";
 

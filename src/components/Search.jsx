@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import { ContextApi } from '../context/ShopContext'
 import "./Search.css"
 function Search() {

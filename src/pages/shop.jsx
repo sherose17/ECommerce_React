@@ -3,7 +3,7 @@ import "./shop.css"
 import {  ContextApi } from '../context/ShopContext'
 import React from 'react'
 import { useEffect ,useState} from 'react'
-
+import Star from './Star'
 function Shop() {
   
   const {dispatch,product:{searchKey}}=ContextApi()
@@ -29,8 +29,8 @@ function Shop() {
     return <div key={p.id}>
       <img className='img' src={p.images[0]} alt=""></img>
       <p>{p.title}</p>
-    <h2>{p.rating}</h2>
-
+      <Star rating={p.rating}/>
+         
       <h2>{new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
